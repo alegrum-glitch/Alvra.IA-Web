@@ -292,7 +292,7 @@ const sectionDots = [
   { id: 'resenas', label: 'Reseñas' },
   { id: 'proceso', label: 'Proceso' },
   { id: 'filtro', label: 'Filtro' },
-  { id: 'equipo', label: 'Equipo' },
+  { id: 'equipo', label: 'Estructura' },
   { id: 'faq', label: 'Preguntas' },
   { id: 'contacto', label: 'Contacto' },
 ]
@@ -494,15 +494,15 @@ function Hero() {
                 className="mt-20 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 font-mono text-[10px] uppercase tracking-[0.26em] text-white/40"
               >
                 <span>
-                  <span className="text-white/70">Ale</span>
+                  <span className="text-white/35">01</span>
                   <span className="mx-2 text-white/20">·</span>
-                  crecimiento de marca
+                  <span className="text-white/70">Producto</span>
                 </span>
                 <span className="h-1 w-1 rounded-full bg-electric/50" />
                 <span>
-                  <span className="text-white/70">Valen</span>
+                  <span className="text-white/35">02</span>
                   <span className="mx-2 text-white/20">·</span>
-                  producto
+                  <span className="text-white/70">Crecimiento</span>
                 </span>
                 <span className="h-1 w-1 rounded-full bg-electric/50" />
                 <span>respuesta &lt; 24h</span>
@@ -950,90 +950,189 @@ function Filtro() {
   )
 }
 
-/* ---------- 04 · Equipo ---------- */
-const partners = [
+/* ---------- 05 · Estructura ---------- */
+type Pillar = {
+  n: string
+  label: string
+  title: string
+  line: string
+  detail: string
+  highlighted?: boolean
+}
+
+const pillars: Pillar[] = [
   {
-    initial: 'A',
-    name: 'Ale',
-    role: 'Crecimiento · estrategia',
-    line: 'Estrategia de marca, contenido y paid en agencia de ecommerce. Mide todo, escribe copy que vende.',
+    n: '01',
+    label: 'Producto · sistemas',
+    title: 'Diseño y construcción.',
+    line: 'Construimos los productos. Mantenemos los sistemas vivos.',
+    detail:
+      'IA aplicada, automatización, integraciones y plataformas a medida. Lo que ves arriba está hecho desde cero, sin templates.',
   },
   {
-    initial: 'V',
-    name: 'Valen',
-    role: 'Producto · automatización',
-    line: 'Construye los productos que ves arriba. IA, sistemas, integraciones.',
+    n: '02',
+    label: 'Crecimiento · marca',
+    title: 'Estrategia y voz.',
+    line: 'Hacemos crecer la marca con criterio.',
+    detail:
+      'Estrategia de marca, contenido y paid media en agencia de ecommerce. Medimos todo y escribimos copy que vende.',
+    highlighted: true,
   },
 ]
 
-function Equipo() {
+type Stat = {
+  value: string
+  label: string
+}
+
+const stats: Stat[] = [
+  { value: '6', label: 'Productos en producción' },
+  { value: '< 24h', label: 'Respuesta promedio' },
+  { value: '100%', label: 'Código y estrategia propios' },
+  { value: '0', label: 'Agencias intermediarias' },
+]
+
+function Estructura() {
   return (
     <section
       id="equipo"
-      className="relative z-10 px-6 py-32 md:px-10 md:py-44"
+      className="relative z-10 px-6 py-24 md:px-10 md:py-44"
     >
       <div className="mx-auto max-w-[1180px]">
-        <SectionLabel num="05" title="Equipo" />
+        <SectionLabel num="05" title="Estructura" />
 
         <motion.h2
           initial={{ opacity: 0, y: 16, filter: 'blur(8px)' }}
           whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
           viewport={{ once: true, amount: 0.4 }}
           transition={springPremium}
-          className="mt-6 max-w-3xl font-serif text-[clamp(40px,6vw,84px)] italic leading-[0.98] tracking-tight text-white"
+          className="mt-6 max-w-3xl font-serif text-[clamp(36px,7vw,84px)] italic leading-[0.98] tracking-tight text-white"
         >
-          Somos dos. <span className="shimmer-text">Hablás con los dos.</span>
+          Sin estructura entre vos y{' '}
+          <span className="shimmer-text">el trabajo.</span>
         </motion.h2>
-
-        <div className="mt-20 grid grid-cols-1 gap-4 md:grid-cols-2">
-          {partners.map((p, i) => (
-            <motion.div
-              key={p.name}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.3 }}
-              transition={{ ...springPremium, delay: i * 0.1 }}
-              className="group relative rounded-2xl border border-white/[0.08] bg-white/[0.02] p-8 backdrop-blur-xl transition-colors hover:border-electric/40 md:p-10"
-            >
-              <div className="flex items-center gap-5">
-                <div className="grid h-14 w-14 place-items-center rounded-full border border-electric/35 bg-electric/[0.06]">
-                  <span className="font-serif text-2xl italic text-electric">
-                    {p.initial}
-                  </span>
-                </div>
-                <div>
-                  <div className="font-serif text-3xl italic text-white">
-                    {p.name}
-                  </div>
-                  <div className="mt-1 font-mono text-[10px] uppercase tracking-[0.26em] text-electric/80">
-                    {p.role}
-                  </div>
-                </div>
-              </div>
-              <p className="mt-8 text-[15px] leading-relaxed text-white/55">
-                {p.line}
-              </p>
-            </motion.div>
-          ))}
-        </div>
 
         <motion.p
           initial={{ opacity: 0, y: 12 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.4 }}
-          transition={{ ...springPremium, delay: 0.2 }}
-          className="mt-10 max-w-2xl border-l-2 border-electric pl-5 text-[14.5px] leading-relaxed text-white/55"
+          transition={{ ...springPremium, delay: 0.1 }}
+          className="mt-8 max-w-xl text-[15.5px] leading-relaxed text-white/55 md:text-[16.5px]"
         >
-          <span className="font-mono text-[10px] uppercase tracking-[0.28em] text-electric">
-            Transparencia total
-          </span>
-          <br />
-          <span className="mt-2 inline-block">
-            Alvra arrancó hace poco. Seis productos vivos, precio accesible,
-            atención de socio. Para el primer cliente eso es{' '}
-            <span className="text-white">ventaja</span>, no excusa.
-          </span>
+          Dos disciplinas trabajando como una. Acceso directo a quien diseña,
+          construye y lleva tu marca al mercado.
         </motion.p>
+
+        {/* Diagram: two pillars + center glow connector */}
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={springPremium}
+          className="relative mt-14 md:mt-20"
+        >
+          <div className="grid grid-cols-1 gap-px overflow-hidden rounded-3xl border border-white/[0.08] md:grid-cols-2">
+            {pillars.map((p, i) => (
+              <div
+                key={p.n}
+                className={`relative overflow-hidden p-8 md:p-12 ${
+                  p.highlighted
+                    ? 'bg-electric/[0.04]'
+                    : 'bg-obsidian-900/60'
+                }`}
+              >
+                {p.highlighted && (
+                  <>
+                    <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-electric/70 to-transparent" />
+                    <div
+                      aria-hidden
+                      className="pointer-events-none absolute -top-24 -right-16 h-64 w-64 rounded-full"
+                      style={{
+                        background:
+                          'radial-gradient(closest-side, rgba(0,112,243,0.18), rgba(0,112,243,0) 70%)',
+                      }}
+                    />
+                  </>
+                )}
+
+                <div className="relative flex items-baseline gap-5">
+                  <span
+                    className={`font-serif text-[64px] italic leading-none md:text-[88px] ${
+                      p.highlighted
+                        ? 'text-electric drop-shadow-[0_0_22px_rgba(0,112,243,0.45)]'
+                        : 'text-electric/85'
+                    }`}
+                  >
+                    {p.n}
+                  </span>
+                  <span
+                    className={`font-mono text-[10.5px] uppercase tracking-[0.28em] ${
+                      p.highlighted ? 'text-electric' : 'text-white/45'
+                    }`}
+                  >
+                    {p.label}
+                  </span>
+                </div>
+
+                <h3 className="relative mt-8 font-serif text-3xl italic text-white md:text-4xl">
+                  {p.title}
+                </h3>
+                <p className="relative mt-3 text-[15.5px] text-white/75 md:text-[17px]">
+                  {p.line}
+                </p>
+                <p className="relative mt-5 text-[14px] leading-relaxed text-white/50 md:text-[14.5px]">
+                  {p.detail}
+                </p>
+              </div>
+            ))}
+          </div>
+
+          {/* Center connector — visual diagram element between pillars */}
+          <div
+            aria-hidden
+            className="pointer-events-none absolute left-1/2 top-1/2 hidden -translate-x-1/2 -translate-y-1/2 md:block"
+          >
+            <div className="grid h-12 w-12 place-items-center rounded-full border border-white/15 bg-obsidian shadow-[0_0_24px_rgba(0,112,243,0.4)]">
+              <span className="h-1.5 w-1.5 rounded-full bg-electric shadow-[0_0_10px_rgba(0,112,243,0.9)]" />
+            </div>
+          </div>
+        </motion.div>
+
+        {/* Manifest line */}
+        <motion.p
+          initial={{ opacity: 0, y: 8 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.4 }}
+          transition={{ ...springPremium, delay: 0.15 }}
+          className="mx-auto mt-10 max-w-2xl text-center font-mono text-[11px] uppercase tracking-[0.28em] text-white/45 md:mt-14"
+        >
+          <span className="text-white">Sin</span> account managers ·{' '}
+          <span className="text-white">Sin</span> juniors ·{' '}
+          <span className="text-white">Sin</span> agencia en el medio
+        </motion.p>
+
+        {/* Stats strip */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ ...springPremium, delay: 0.2 }}
+          className="mt-10 grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-white/[0.08] md:mt-14 md:grid-cols-4"
+        >
+          {stats.map((s) => (
+            <div
+              key={s.label}
+              className="group relative bg-obsidian-900/60 p-7 text-center backdrop-blur-xl transition-colors hover:bg-electric/[0.04] md:p-9"
+            >
+              <div className="font-serif text-[44px] italic leading-none text-white md:text-[56px]">
+                {s.value}
+              </div>
+              <div className="mt-3 font-mono text-[10px] uppercase tracking-[0.26em] text-white/45 md:mt-4">
+                {s.label}
+              </div>
+            </div>
+          ))}
+        </motion.div>
       </div>
     </section>
   )
@@ -1430,7 +1529,7 @@ export default function App() {
         <Reseñas />
         <Proceso />
         <Filtro />
-        <Equipo />
+        <Estructura />
         <FAQ />
         <ContactCTA />
       </main>
