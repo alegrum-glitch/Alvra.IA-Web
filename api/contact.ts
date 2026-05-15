@@ -2,7 +2,9 @@ import type { VercelRequest, VercelResponse } from '@vercel/node'
 import { Resend } from 'resend'
 
 const TO = 'alegrum@alvra-ia.com'
-const FROM = 'Alvra.IA <web@alvra-ia.com>'
+// Sandbox mode: only sends to the email registered in your Resend account.
+// When alvra-ia.com is verified in Resend, change back to 'Alvra.IA <web@alvra-ia.com>'.
+const FROM = 'Alvra.IA <onboarding@resend.dev>'
 
 const MAX = {
   nombre: 80,
